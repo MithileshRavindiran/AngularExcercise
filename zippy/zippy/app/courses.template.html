@@ -1,0 +1,34 @@
+<br>
+<div class="courses">
+
+    <!--<div class="course"  class="pull-left glyphicon" [ngClass]="
+                {
+                    'glyphicon-check': !isChecked,
+                    'glyphicon-unchecked': isChecked
+                }">
+
+    </div> -->
+    <div class="course pull-left glyphicon" [ngClass]="
+                    {
+                        'glyphicon-check': isChecked,
+                        'glyphicon-unchecked': !isChecked
+                    }" (click)="changeCheckStatus()">
+        {{course.courseName}}
+        <div class="media" *ngIf="isChecked">
+            <div class="media-left media-middle">
+                <a href="#">
+                    <img class="media-object" src="{{course.imageUrl}}">
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">
+                    {{ course.authors?.authorTwo }} <span class="handle">{{ course.handle }}</span>
+                </h4>
+                {{ course.body }}
+                <!--<div>
+                    <like [totalLikes]="data.totalLikes" [iLike]="data.iLike"></like>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

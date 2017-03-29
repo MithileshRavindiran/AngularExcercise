@@ -1,0 +1,5 @@
+<div style="width:20px">
+    <i class="glyphicon glyphicon-menu-up"  [class.highlighted]="myVote == 1" (click)="onNewVoteClick()"></i>
+    <span>{{voteCount + myVote}}</span>
+    <i class="glyphicon glyphicon-menu-down" [class.highlighted]="myVote == -1" (click)="onDeleteVoteClick()"></i>
+</div>

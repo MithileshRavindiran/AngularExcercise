@@ -1,0 +1,45 @@
+<form #f="ngForm" (ngSubmit)="submitForm(f.form)">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input id="name" ngControl="name" #name="ngForm" type="text" class="form-control" placeholder="Enter name" required minlength="6">
+        <div *ngIf="name.touched && name.errors">
+            <div class="alert alert-danger"
+                 *ngIf=" name.errors.required">
+                First Name is required
+            </div>
+            <div class="alert alert-danger" *ngIf="name.errors.minlength">
+                First Name should be {{ name.errors.minlength?.requiredLength}} characters
+            </div>
+         </div>
+    </div>
+    <div class="form-group">
+        <label for="emailId">Email Address</label>
+        <input id="emailId" ngControl="emailId" #emailId="ngForm" type="email" placeholder="Enter email" class="form-control" (change)="log(emailId)" required>
+        <div *ngIf="emailId.touched && emailId.errors">
+            <div class="alert alert-danger"
+                 *ngIf=" emailId.errors.required">
+                Email Id is required
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="frequency">Frequency of Emails</label>
+        <select
+                ngControl="frequency"
+                #frequency="ngForm"
+                id="frequency"
+                class="form-control"
+                required>
+            <option value=""></option>
+            <option *ngFor="#frequency of frequencies" value="{{ frequency.id }}">
+                {{ frequency.label }}
+            </option>
+        </select>
+        <div
+                class="alert alert-danger"
+                *ngIf="frequency.touched && !frequency.valid">
+            This field is required.
+        </div>
+    </div>
+    <button class="btn btn-primary" [disabled]="!f.valid" type="submit">Subscribe</button>
+</form>
